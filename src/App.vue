@@ -14,7 +14,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar color="deep-purple accent-4" app dense dark>
+    <v-app-bar color="primary" app dense dark>
       <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Notice board</v-toolbar-title>
       <v-spacer></v-spacer>
