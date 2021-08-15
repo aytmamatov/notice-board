@@ -19,14 +19,13 @@
       <v-toolbar-title>Notice board</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn text v-for="link in links" :key="link.title">
+        <v-btn :to="link.url" text v-for="link in links" :key="link.title">
           <v-icon left :to="link.url">{{ link.icon }}</v-icon>
           {{ link.title }}
         </v-btn>
       </v-toolbar-items>
     </v-app-bar>
     <v-content>
-      Hello
       <router-view />
     </v-content>
   </v-app>
@@ -38,10 +37,10 @@ export default {
       drawer: false,
       links: [
         { title: "Login", icon: "mdi-lock-outline", url: "/login" },
-        { title: "Registration", icon: "mdi-face-outline", url: "/register" },
+        { title: "Registration", icon: "mdi-face-outline", url: "/registration" },
         { title: "Orders", icon: "mdi-bookmark-outline", url: "/orders" },
-        { title: "New notice", icon: "mdi-folder-plus-outline", url: "/new" },
-        { title: "My notices", icon: "mdi-format-list-bulleted", url: "/list" },
+        { title: "New ad", icon: "mdi-folder-plus-outline", url: "/newAd" },
+        { title: "My ad", icon: "mdi-format-list-bulleted", url: "/list" },
       ],
     };
   },
