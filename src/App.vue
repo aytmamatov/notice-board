@@ -16,7 +16,7 @@
     </v-navigation-drawer>
     <v-app-bar color="primary" app dense dark>
       <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Notice board</v-toolbar-title>
+      <v-toolbar-title> <router-link to="/" tag="span" class="pointer">Notice board</router-link></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn :to="link.url" text v-for="link in links" :key="link.title">
@@ -46,3 +46,8 @@ export default {
   },
 };
 </script>
+<style lang="css" scoped>
+  .pointer{
+    cursor: pointer;
+  }
+</style>
