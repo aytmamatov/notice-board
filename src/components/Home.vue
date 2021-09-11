@@ -5,7 +5,7 @@
         <v-flex xs12>
           <v-carousel>
             <v-carousel-item
-              v-for="ad in ads"
+              v-for="ad of promoAds"
               :key="ad.id"
               :src="ad.imageSrc"
               reverse-transition="fade-transition"
@@ -51,32 +51,13 @@
 
 <script>
 export default {
-  data() {
-    return {
-      ads: [
-        {
-          title: "First Ad",
-          description: "Hello. I'm an ad",
-          promo: false,
-          imageSrc: "https://picsum.photos/1300",
-          id: 1,
-        },
-        {
-          title: "Second Ad",
-          description: "Hello. I'm an ad",
-          promo: true,
-          imageSrc: "https://picsum.photos/1350",
-          id: 2,
-        },
-        {
-          title: "Third Ad",
-          description: "Hello. I'm an ad",
-          promo: true,
-          imageSrc: "https://picsum.photos/1450",
-          id: 3,
-        },
-      ],
-    };
+  computed: {
+    promoAds() {
+      return this.$store.getters.promoAds;
+    },
+    ads() {
+      return this.$store.getters.ads;
+    },
   },
 };
 </script>
