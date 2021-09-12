@@ -75,8 +75,9 @@ export default {
           title: this.title,
           description: this.description,
           promo: this.promo,
+          imageSrc: "https://picsum.photos/1000",
         };
-        console.log(ad)
+        this.$store.dispatch("createAd", ad);
       }
     },
   },

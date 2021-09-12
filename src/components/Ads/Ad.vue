@@ -3,10 +3,10 @@
     <v-layout>
       <v-flex xs12>
         <v-card>
-          <v-img src="https://picsum.photos/1300" height="300px"></v-img>
+          <v-img :src="ad.imageSrc" height="300px"></v-img>
           <v-card-text>
-            <h1 class="text--primary">Lorem</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, nesciunt.</p>
+            <h1 class="text--primary">{{ ad.title }}</h1>
+            <p>{{ ad.description }}</p>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -20,7 +20,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["id"],
+  computed: {
+    ad() {
+      const id = this.id;
+      const adById = this.$store.getters.adById(id);
+      return adById;
+    },
+  },
+};
 </script>
 
 <style></style>

@@ -24,6 +24,7 @@ const routes = [
   {
     name: "ad",
     path: "/ad/:id",
+    props: true,
     component: Ad,
   },
   {

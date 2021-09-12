@@ -24,7 +24,11 @@ export default {
       },
     ],
   },
-  mutations: {},
+  mutations: {
+    createAd(state, payload) {
+      state.ads.push(payload);
+    },
+  },
   getters: {
     ads(state) {
       return state.ads;
@@ -35,6 +39,14 @@ export default {
     myAds(state) {
       return state.ads;
     },
+    adById(state) {
+      return (currentId) => state.ads.find((ad) => ad.id === Number(currentId));
+    },
   },
-  actions: {},
+  actions: {
+    createAd({ commit }, payload) {
+      payload.id = Math.random();
+      commit("createAd", payload);
+    },
+  },
 };
