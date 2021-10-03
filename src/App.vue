@@ -14,7 +14,7 @@
         </v-list-item>
         <v-list-item @click="onLogout" v-if="isUserLoggedIn">
           <v-list-item-content>
-            <v-list-item-title v-text="'Выйти'"></v-list-item-title>
+            <v-list-item-title v-text="'Logout'"></v-list-item-title>
           </v-list-item-content>
           <v-list-item-icon>
             <v-icon>
