@@ -50,7 +50,7 @@
         <v-layout>
           <v-flex xs12>
             <v-spacer></v-spacer>
-            <v-btn color="success" @click="createAd" :disabled="!valid">Create ad</v-btn>
+            <v-btn color="success" :loading="loading" @click="createAd" :disabled="!valid || loading">Create ad</v-btn>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -62,8 +62,8 @@
 export default {
   data() {
     return {
-      title: "",
-      description: "",
+      title: '',
+      description: '',
       promo: false,
       valid: false,
     };
@@ -75,10 +75,16 @@ export default {
           title: this.title,
           description: this.description,
           promo: this.promo,
-          imageSrc: "https://picsum.photos/1000",
+          imageSrc: 'https://picsum.photos/1000',
         };
-        this.$store.dispatch("createAd", ad);
+        this.$store.dispatch('createAd', ad);
+        this.$router.push('/list');
       }
+    },
+  },
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
     },
   },
 };
