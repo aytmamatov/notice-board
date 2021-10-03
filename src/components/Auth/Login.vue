@@ -29,7 +29,7 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn :disabled="!valid" @click="onSubmit" color="primary">Login</v-btn>
+              <v-btn :disabled="!valid" @click="onSubmit" :loading="loading" color="primary">Login</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -42,29 +42,39 @@
 export default {
   data() {
     return {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       valid: false,
       emailRules: [
-        (v) => !!v || "E-mail is required",
-        (v) => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || "E-mail must be valid",
+        (v) => !!v || 'E-mail is required',
+        (v) => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid',
       ],
       passwordRules: [
-        (v) => !!v || "Password is required",
-        (v) => (v && v.length >= 6) || "Password must be more than 6 characters",
+        (v) => !!v || 'Password is required',
+        (v) => (v && v.length >= 6) || 'Password must be more than 6 characters',
       ],
     };
   },
   methods: {
-    onSubmit() {
+    async onSubmit() {
       if (this.$refs.loginForm.validate()) {
         const user = {
           email: this.email,
           password: this.password,
         };
-        console.log(user);
-        this.$router.push("/");
+
+        try {
+          await this.$store.dispatch('loginUser', user);
+          this.$router.push('/');
+        } catch (error) {
+          throw error;
+        }
       }
+    },
+  },
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
     },
   },
 };
