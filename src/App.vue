@@ -28,6 +28,15 @@
     <v-content>
       <router-view />
     </v-content>
+
+    <template v-if="error">
+      <v-snackbar :value="true" color="error" timeout="5000" :multi-line="true">
+        {{ error }}
+        <template #action>
+          <v-btn outlined @click="closeError">Close</v-btn>
+        </template>
+      </v-snackbar>
+    </template>
   </v-app>
 </template>
 <script>
@@ -36,18 +45,28 @@ export default {
     return {
       drawer: false,
       links: [
-        { title: "Login", icon: "mdi-lock-outline", url: "/login" },
-        { title: "Registration", icon: "mdi-face-outline", url: "/registration" },
-        { title: "Orders", icon: "mdi-bookmark-outline", url: "/orders" },
-        { title: "New ad", icon: "mdi-folder-plus-outline", url: "/newAd" },
-        { title: "My ad", icon: "mdi-format-list-bulleted", url: "/list" },
+        { title: 'Login', icon: 'mdi-lock-outline', url: '/login' },
+        { title: 'Registration', icon: 'mdi-face-outline', url: '/registration' },
+        { title: 'Orders', icon: 'mdi-bookmark-outline', url: '/orders' },
+        { title: 'New ad', icon: 'mdi-folder-plus-outline', url: '/newAd' },
+        { title: 'My ad', icon: 'mdi-format-list-bulleted', url: '/list' },
       ],
     };
+  },
+  computed: {
+    error() {
+      return this.$store.getters.error;
+    },
+  },
+  methods: {
+    closeError() {
+      return this.$store.dispatch('clearError');
+    },
   },
 };
 </script>
 <style lang="css" scoped>
-  .pointer{
-    cursor: pointer;
-  }
+.pointer {
+  cursor: pointer;
+}
 </style>
