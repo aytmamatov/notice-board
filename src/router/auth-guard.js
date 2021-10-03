@@ -1,7 +1,10 @@
 import store from '@/store';
 
 export default function(to, from, next) {
-  if (store.getters.user) next();
+  if (store.getters.user) {
+    next();
+    return;
+  }
 
   next('/login?loginError=true');
 }
