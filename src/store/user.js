@@ -12,6 +12,9 @@ export default {
     user(state) {
       return state.user;
     },
+    isUserLoggedIn(state) {
+      return state.user !== null;
+    },
   },
   actions: {
     async registerUser({ commit }, { email, password }) {
@@ -39,6 +42,13 @@ export default {
         commit('setLoading', false);
         throw error;
       }
+    },
+    autoLoginUser({ commit }, payload) {
+      commit('setUser', payload);
+    },
+    logoutUser({ commit }) {
+      auth.signOut();
+      commit('setUser', null);
     },
   },
 };
